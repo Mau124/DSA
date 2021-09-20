@@ -7,10 +7,11 @@ void swap(int& a, int& b) {
     b = aux;
 }
 
-void insertionSort(int arr[], int size) {
+void bubbleSort(int arr[], int size) {
     for(int i=0; i<size; ++i) {
-        for(int j=i; j>0 && arr[j] < arr[j-1]; --j) {
-            swap(arr[j], arr[j-1]);
+        for(int j=0; j<size-1; ++j) {
+            if(arr[j] > arr[j+1]) 
+                swap(arr[j], arr[j+1]);
         }
     }
 }
@@ -28,7 +29,8 @@ int main() {
     cout << "Unsorted array" << endl;
     printArr(arr, size);
     cout << "Sorted array" << endl;
-    insertionSort(arr, size);
+    bubbleSort(arr, size);
     printArr(arr, size);
+
     return 0;
 }
