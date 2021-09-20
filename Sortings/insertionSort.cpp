@@ -7,19 +7,16 @@ void swap(int& a, int& b) {
     b = aux;
 }
 
-void selectionSort(int arr[], int size) {
-    for(int i=0; i<size-1; ++i) {
-        int min = i;
-        for(int j=i+1; j<size; ++j) {
-            if(arr[j] < arr[min]) 
-                min = j;
+void insertionSort(int arr[], int size) {
+    for(int i=0; i<size; ++i) {
+        for(int j=i; j>0 && arr[j] < arr[j-1]; --j) {
+            swap(arr[j], arr[j-1]);
         }
-        swap(arr[i], arr[min]);
     }
 }
 
 void printArr(int arr[], int size) {
-    for(int i=0; i<size; ++i) 
+    for(int i=0; i<size; ++i)
         cout << arr[i] << " ";
     cout << "\n";
 }
@@ -27,11 +24,11 @@ void printArr(int arr[], int size) {
 int main() {
     int size = 10;
     int arr[10] = {9, 7, 5, 6, 2, 1, 4, 3, 0, 8};
-    
+
     cout << "Unsorted array" << endl;
     printArr(arr, size);
     cout << "Sorted array" << endl;
-    selectionSort(arr, size);
+    insertionSort(arr, size);
     printArr(arr, size);
 
     return 0;

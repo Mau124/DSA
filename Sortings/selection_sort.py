@@ -4,8 +4,7 @@ def selection_sort(lst):
         for j in range(i+1, len(lst)):
             if lst[j] < lst[minVal]:
                 minVal = j
-        if minVal != i:
-            lst[i], lst[minVal] = lst[minVal], lst[i]
+        lst[i], lst[minVal] = lst[minVal], lst[i]
 
 if __name__ == "__main__":
     lst = [9, 7, 5, 6, 2, 1, 4, 3, 0, 8]
