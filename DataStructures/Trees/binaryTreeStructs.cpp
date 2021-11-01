@@ -48,45 +48,46 @@ void postOrder(Node* next) {
     cout << next->value << " ";
 }
 
+// Insert as a binary search tree
+void insert(Node* node, int val) {
+    if(val > node->value) {
+        if(node->right == NULL) {
+            node->right = new Node(val);
+        } else {
+            insert(node->right, val);
+        }
+    } else {
+        if(node->left == NULL) {
+            node->left = new Node(val);
+        } else {
+            insert(node->left, val);
+        }
+    } 
+}
+
+// Check if a value exist in a binary search tree
+bool search(Node* node, int val) {
+    if(node == NULL)
+        return false;
+
+    if(node->value == val) {
+        return true;
+    } else if(node->value > val) {
+        return search(node->left, val);
+    } else {
+        return search(node->right, val);
+    }
+}
+
 int main() {
     // We create a root node
-    struct Node* root = new Node(1);
+    struct Node* root = new Node(8);
 
-    /*
-     * Graphical structure of the tree
-     *
-     *          1
-     *        /   \
-     *      NULL NULL
-     * */
-
-    root->left = new Node(2);
-    root->right = new Node(3);
-
-    /*
-     * Graphical structure of the tree
-     *
-     *          1
-     *        /   \
-     *       2     3
-     *      / \   / \
-     *     N  N  N  N
-     * */
-
-    root->left->left = new Node(4);
-    root->left->right = new Node(5);
-
-    /*
-     * Graphical structure of the tree
-     *
-     *          1
-     *        /   \
-     *       2     3
-     *      / \   / \
-     *     4   5  N  N
-     *    / \ / \
-     *   N  N N N
-     * */
+    insert(root, 4); 
+    insert(root, 5);
+    insert(root, 9);
+    insert(root, 10);
+    insert(root, 3);
 
     // Tree traversal
     // Pre-order
@@ -103,6 +104,11 @@ int main() {
     cout << "Tree traversal in Post-order" << endl;
     postOrder(root);
     cout << "\n";
+
+    // Check if 5 is 10 is inside the binary search tree
+    cout << "5 is inside: " << search(root, 5) << endl;
+    // Check if 87 is inside the binary search tree
+    cout << "87 is inside: " << search(root, 87) << endl;
     
     return 0;
 }
